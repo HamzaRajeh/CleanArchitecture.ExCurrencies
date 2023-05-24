@@ -12,7 +12,7 @@ export const   Home=()=>{
 
 
  
-const FetchCurrenciesData=(PageNumber=1,PageSize=30)=>{
+const FetchCurrenciesData=(PageNumber=1,PageSize=10)=>{
   var requestOptions = {
     method: 'GET',
     redirect: 'follow'
@@ -42,7 +42,7 @@ useEffect( ()=>{
             <div ><TextField type='text'   size='small'  label="Search" helperText={'Search About Any Data Of currencies '}   sx={{ m: 1,width: '65%'}} /></div>
 
 {Data.map((c,index)=>{
-return     <CardCurrencyEx  id={c.id} CurrncyName={c.currencyName} CurrncyCode={c.code} Data={[{Titel:"Ex Rajeh",Buy:"510",Sale:"543"},{Titel:"Ex Hamza Rajeh",Buy:"540",Sale:"545"}]} />
+return     <CardCurrencyEx  id={c.id} CurrncyName={c.currencyName} CurrncyCode={c.code}  />
 
 })}
 

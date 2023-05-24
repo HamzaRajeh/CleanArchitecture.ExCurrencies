@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './style/Card.css'
 //  import $ from 'jquery';
 import { Button } from "@mui/material";
@@ -36,10 +36,30 @@ RejectDashboardHandle(id);
     )
 }
  
-export const  CardCurrencyEx=({id,CurrncyCode='',CurrncyName='',Data=[{Titel:"",Buy:"",Sale:""}]})=>{
-
-
-
+export const  CardCurrencyEx=({id,CurrncyCode='',CurrncyName=''})=>{
+const [Data,setData]=new useState([])
+function fetchData(CurrencyId) {
+    var myHeaders = new Headers();
+    myHeaders.append("accept", "application/json");
+    
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    
+    fetch(`https://localhost:5001/api/GetDashboardQuerByIdCurrency?CurrenciesId=${CurrencyId}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {console.log(result.items)
+        setData(result.items)
+    })
+      .catch(error => console.log('error', error));
+}
+useEffect(()=>{
+    fetchData(id);
+    console.log(Data);
+    // eslint-disable-next-line
+},[])
     return(
         <>
         <div className="Card" style={{zIndex:id+2}}>
@@ -49,7 +69,7 @@ export const  CardCurrencyEx=({id,CurrncyCode='',CurrncyName='',Data=[{Titel:"",
            </div>
            <div id={"Currency"+id} className="Card-body">
            <div className="Record-ex">
-            <div className="Record-Titel">{"Compny Name"}</div>
+            <div className="Record-Titel">{"Compny Id"}</div>
             <div className="Record-Buy">{"Buy"}</div>
             <div className="Record-Sale">{"Sale"}</div>
                 </div>
@@ -58,9 +78,9 @@ export const  CardCurrencyEx=({id,CurrncyCode='',CurrncyName='',Data=[{Titel:"",
 Data.map((ex)=>{
 return <>
 <div className="Record-ex" >
-<div className="Record-Titel">{ex.Titel}</div>
-<div className="Record-Buy">{ex.Buy}</div>
-<div className="Record-Sale">{ex.Sale}</div>
+<div className="Record-Titel">{ex.applicationUserId}</div>
+<div className="Record-Buy">{ex.buyRate}</div>
+<div className="Record-Sale">{ex.saleRate}</div>
     </div></>
 
 })

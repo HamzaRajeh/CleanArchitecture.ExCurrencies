@@ -4,8 +4,7 @@ import { Menu } from './components/menu';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { SignInOfAdmin } from './components/SignIn';
-  
+   
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -21,7 +20,7 @@ const SingInfo=JSON.parse(localStorage.getItem('SingInfo'));
  
 if(!SingInfo)
 {
-return(<SignInOfAdmin/>)
+  window.location.href="/Login";
 }
 else{
 return<>

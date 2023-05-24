@@ -6,7 +6,7 @@ export const InputSignIn={
     ]
 }
 export const SinginAdmin={userName:"admin",Password:"admin",IsAuth:false};
-export const HandelSignAdmin=()=>{
+export function HandelSignAdmin(){
         let Password='';
         let username='';
         InputSignIn.SignInAdmin.map(a=>{
@@ -21,7 +21,6 @@ export const HandelSignAdmin=()=>{
                 default:
                     break;
             }
- a.value=null;
 
     return null;
         
@@ -45,11 +44,12 @@ export const HandelSignAdmin=()=>{
      fetch("https://localhost:5001/api/Login", requestOptions)
        .then(response => response.json())
        .then(result =>{ console.log(result)
-        localStorage.setItem('SingInfo',JSON.stringify( result))
-        setTimeout(()=> window.location.reload(),1000)
-    })
-       .catch(error => {alert('error', error)
-       localStorage.setItem('SingInfo',JSON.stringify())
+        if(!localStorage.getItem('SingInfo'))
+        localStorage.setItem('SingInfo',JSON.stringify(result))
+        setTimeout(()=> window.location.href="/Cpanel",1000)
+      }    )
+       .catch(error => {console.log('error', error)
+       
     });
     
     }

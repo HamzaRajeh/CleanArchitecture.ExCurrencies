@@ -5,8 +5,7 @@ export const InputReqister={
         ,{col:"username",type:"TextField",label:"Username",defaultValue:"",value:null,class:"",helperText:" Enter Username ",ref:null,width:'100%',size:"small"}
         ,{col:"Password",type:"PasswordField",label:"Password",defaultValue:null,value:null,class:"success",helperText:" Enter  Password ",ref:null,width:'100%',size:"small"}
         ,{col:"ConfirmPassword",type:"PasswordField",label:"Confirm Password",defaultValue:null,value:null,class:"success",helperText:"Confirm Password ",ref:null,width:'100%',size:"small"}
-        ,{col:"BaseCurrency",type:"SelectField",label:"Base Currency",defaultValue:null,value:null,class:"success",helperText:"your Base Currency",ref:null,width:'100%',size:"small",option:[{id:1,value:"YER"}]}
-        ,{col:"Email",type:"EmailField",label:"Email",defaultValue:null,value:null,class:"success",helperText:"Enter your Email ",ref:null,width:'100%',size:"small"}
+         ,{col:"Email",type:"EmailField",label:"Email",defaultValue:null,value:null,class:"success",helperText:"Enter your Email ",ref:null,width:'100%',size:"small"}
         ,{col:"Phone",type:"TextField",label:"Phone",defaultValue:null,value:null,class:"success",helperText:"Enter your phone",ref:null,width:'100%',size:"small"}
     ]
 }
@@ -18,7 +17,6 @@ export const HandelSave=()=>{
     let accountDescription='';
     let Password='';
     let ConfirmPassword='';
-    let BaseCurrency='';
     let Email='';
     let username='';
     let Phone='';
@@ -42,14 +40,11 @@ export const HandelSave=()=>{
             case "Phone":
             Phone= a.value
             break;            
-            case "BaseCurrency":
-            BaseCurrency= a.value
-            break;
+            
             default:
                 break;
         }
 
- a.value=null;
 
     return null;
     });
@@ -62,7 +57,7 @@ export const HandelSave=()=>{
    "userName": username,
    "password": Password,
    "confirmPassword":ConfirmPassword,
-   "baseCurrencyID":BaseCurrency,
+   "baseCurrencyID":null,
    "email": Email,
    "phoneNumber": Phone
  });
@@ -78,9 +73,9 @@ export const HandelSave=()=>{
    .then(response => response.json())
    .then(result =>{ console.log(result)
     localStorage.setItem('SingInfo',result)
-    setTimeout(()=> window.location.reload(),1000)
+    setTimeout(()=> window.location.href="/Cpanel",1000)
 })
-   .catch(error => alert('error', error));
+   .catch(error => console.log('error', error));
 
 }
 
