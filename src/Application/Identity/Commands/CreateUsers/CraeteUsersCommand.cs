@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExCurrency.Application.Identity.Commands.CreateUsers;
-public record CraeteUsersCommand : IRequest<Users>
+public record CraeteUsersCommand : IRequest<bool>
 {
     public string? AccountDescription { get; set; }
     public string? UserName { get; set; }
@@ -24,7 +24,7 @@ public record CraeteUsersCommand : IRequest<Users>
 
 }
 
-public class CraeteUsersCommandHandler : IRequestHandler<CraeteUsersCommand, Users>
+public class CraeteUsersCommandHandler : IRequestHandler<CraeteUsersCommand, bool>
 {
 
     public  UserManager<Users> _UserManger;  
@@ -34,21 +34,16 @@ public class CraeteUsersCommandHandler : IRequestHandler<CraeteUsersCommand, Use
  
         
     }
-  public async  Task<Users> Handle(CraeteUsersCommand request, CancellationToken cancellationToken)
+  public async  Task<bool> Handle(CraeteUsersCommand request, CancellationToken cancellationToken)
     {
         var email=_UserManger.FindByEmailAsync(request.Email);
         //if (email != null) { return "this email is found it"; }
         var UserName = _UserManger.FindByNameAsync(request.UserName)    ;
         //if (UserName != null) { return "this UserName is found it"; }
         var user = new Users() {UserName= request.UserName,Email=request.Email,AccountDescription=request.AccountDescription,PhoneNumber=request.PhoneNumber };
-      var result= await _UserManger.CreateAsync(user, request.Password);   
-       
-        if (result.Succeeded) { 
-        return user;
-        }
-        else
-        {
-            return null;
-        }
+      var result= await _UserManger.CreateAsync(user, request.Password);
+
+        return result.Succeeded;
+
     }
 }

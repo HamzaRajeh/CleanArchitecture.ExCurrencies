@@ -72,7 +72,12 @@ export const HandelSave=()=>{
  fetch("https://localhost:5001/api/CreateUser", requestOptions)
    .then(response => response.json())
    .then(result =>{ console.log(result)
+    if(result)  
     setTimeout(()=> window.location.href="/Login",500)
+else{
+    alert ('Your Data Invalid Try again, please , you must Enter More than 8 digit As Password or  your username Invalid')
+    window.location.reload();
+}
 })
    .catch(error => console.log('Your Data Invalid Try again,please', error));
 
