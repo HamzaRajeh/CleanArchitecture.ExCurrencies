@@ -3,7 +3,7 @@ export const InputReqister={
     Register:[
         {col:"AccountDescription",type:"TextField",label:"FullName/Company's Name",defaultValue:"",value:null,class:"",helperText:" Enter Your Company's Name ",ref:null,width:'100%',size:"small"}
         ,{col:"username",type:"TextField",label:"Username",defaultValue:"",value:null,class:"",helperText:" Enter Username ",ref:null,width:'100%',size:"small"}
-        ,{col:"Password",type:"PasswordField",label:"Password",defaultValue:null,value:null,class:"success",helperText:" Enter  Password ",ref:null,width:'100%',size:"small"}
+        ,{col:"Password",type:"PasswordField",label:"Password",defaultValue:null,value:null,class:"success",helperText:" Enter  Password 8 Digit  & complex",ref:null,width:'100%',size:"small"}
         ,{col:"ConfirmPassword",type:"PasswordField",label:"Confirm Password",defaultValue:null,value:null,class:"success",helperText:"Confirm Password ",ref:null,width:'100%',size:"small"}
          ,{col:"Email",type:"EmailField",label:"Email",defaultValue:null,value:null,class:"success",helperText:"Enter your Email ",ref:null,width:'100%',size:"small"}
         ,{col:"Phone",type:"TextField",label:"Phone",defaultValue:null,value:null,class:"success",helperText:"Enter your phone",ref:null,width:'100%',size:"small"}
@@ -72,7 +72,7 @@ export const HandelSave=()=>{
  fetch("https://localhost:5001/api/CreateUser", requestOptions)
    .then(response => response.json())
    .then(result =>{ console.log(result)
-    localStorage.setItem('SingInfo',result)
+    localStorage.setItem('SingInfo',JSON.stringify( result))
     setTimeout(()=> window.location.href="/Cpanel",1000)
 })
    .catch(error => console.log('error', error));
