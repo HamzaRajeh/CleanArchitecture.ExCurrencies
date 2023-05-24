@@ -72,10 +72,9 @@ export const HandelSave=()=>{
  fetch("https://localhost:5001/api/CreateUser", requestOptions)
    .then(response => response.json())
    .then(result =>{ console.log(result)
-    localStorage.setItem('SingInfo',JSON.stringify( result))
-    setTimeout(()=> window.location.href="/Cpanel",1000)
+    setTimeout(()=> window.location.href="/Login",500)
 })
-   .catch(error => console.log('error', error));
+   .catch(error => console.log('Your Data Invalid Try again,please', error));
 
 }
 
