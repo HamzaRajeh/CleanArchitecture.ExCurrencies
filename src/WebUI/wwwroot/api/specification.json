@@ -105,6 +105,55 @@
         }
       }
     },
+    "/api/GetDashboardQuerByIdCurrency": {
+      "get": {
+        "tags": [
+          "GetDashboardQuerByIdCurrency"
+        ],
+        "operationId": "GetDashboardQuerByIdCurrency_GetDashboardQuerById",
+        "parameters": [
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "CurrenciesId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 2
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedListOfExCurrenciesDashboardDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/GetExDashboard": {
       "get": {
         "tags": [

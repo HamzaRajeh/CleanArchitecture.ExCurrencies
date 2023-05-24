@@ -13,4 +13,5 @@ public class ExCurrenciesDashboardDTO:IMapFrom<ExCurrenciesDashboard>
     public decimal BuyRate { get; set; } = 0;
     public decimal SaleRate { get; set; } = 0;
     public string? ApplicationUserId { get; set; }
+
 }
