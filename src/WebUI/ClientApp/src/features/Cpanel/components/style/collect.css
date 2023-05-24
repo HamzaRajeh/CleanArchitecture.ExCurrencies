@@ -1,0 +1,15 @@
+.Headr-collect{
+    display: flex ;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.Card-Collect{
+    width: 30%;
+    margin: 2%;
+    height: 10rem;
+    border:2px black solid;
+    border-radius: 1rem;
+   color: red;
+    padding-top: 3rem;
+}
