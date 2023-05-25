@@ -5,7 +5,7 @@ export const InputCurrency={
         ,{col:"currencyNameAr",type:"TextField",label:"currency's name ar",defaultValue:"",value:null,class:"",helperText:" Enter  currency's name ar",ref:null,width:'40%',size:"small"}
         ,{col:"code",type:"TextField",label:"currency's code",defaultValue:"",value:null,class:"",helperText:"currensy's code ",ref:null,width:'40%',size:"small"}
         ,{col:"symbol",type:"TextField",label:"symbol's code",defaultValue:"",value:null,class:"",helperText:"currensy's symbol ",ref:null,width:'40%',size:"small"}
-        ,{col:"country",type:"TextField",label:"symbol's code",defaultValue:"",value:null,class:"",helperText:"currensy's symbol ",ref:null,width:'80%',size:"small"}
+        ,{col:"country",type:"TextField",label:"country's  ",defaultValue:"",value:null,class:"",helperText:"currensy's country ",ref:null,width:'80%',size:"small"}
 
     ]
 }
@@ -35,11 +35,6 @@ export const HandelSave=()=>{
             default:
                 break;
         }
- a.value=null;
-
-
-
-
 return null;
 
     })
@@ -61,8 +56,11 @@ return null;
     };
     
     fetch("https://localhost:5001/api/PostCurrencies", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+      .then(response => response.json())
+      .then(result =>{ console.log(result)
+        alert("Created")
+    window.location.reload();
+    })
+      .catch(error =>   window.location.reload());
 
 }

@@ -45,9 +45,11 @@ return 0;
    .then(response => response.text())
    .then(result => {
     console.log(result)
-    alert("Updated")})
+    alert("Updated")
+    window.location.href="/"
+  })
    .catch(error =>console.log('error', error));
-   window.location.reload();
+    window.location.href = "/"
     };
     
     export const RejectDashboardHandle=(currenciesId)=>{
@@ -76,8 +78,10 @@ return 0;
      .then(response => response.text())
      .then(result => {
       console.log(result)
-      alert("Updated")})
+      alert("Updated")
+      window.location.href="/"
+    })
      .catch(error =>console.log('error', error));
-     window.location.reload();
+        window.location.href = "/"
       };
  
