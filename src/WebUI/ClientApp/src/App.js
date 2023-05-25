@@ -30,6 +30,7 @@ window.location.reload();
           <NavLink  className='App-link' to={'/Cpanel'}>Cpanel</NavLink>
           <NavLink  className='App-link' to={'/register'}>Register</NavLink>
           <NavLink  className='App-link' to={'/Login'}>Login</NavLink>
+          <NavLink  className='App-link' to={'/'}>Dashboard</NavLink>
           </nav>
 
     
