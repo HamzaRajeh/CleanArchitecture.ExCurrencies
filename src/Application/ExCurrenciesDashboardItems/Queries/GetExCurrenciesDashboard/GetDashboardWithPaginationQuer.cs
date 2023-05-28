@@ -33,7 +33,6 @@ public class GetDashboardWithPaginationQuer:IRequest<PaginatedList<ExCurrenciesD
         {
             return await _context.ExCurrenciesDashboard
                .OrderBy(x => x.ApplicationUserId)
-               .Include(a=>a.Currencies)
                .ProjectTo<ExCurrenciesDashboardDTO>(_mapper.ConfigurationProvider)
                .PaginatedListAsync(request.PageNumber, request.PageSize);
                

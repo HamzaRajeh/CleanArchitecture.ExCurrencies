@@ -30,5 +30,5 @@ public class Currencies: BaseAuditableEntity
     }
     public ICollection<ExCurrenciesDashboard> ExCurrenciesDashboard  { get; } = new List<ExCurrenciesDashboard>() ;    
     public ICollection<ExCurrenciesHistory> ExCurrenciesHistory { get; } = new List<ExCurrenciesHistory>();
-    public ICollection<Users> Users { get; } = new List<Users>();
+  
 }

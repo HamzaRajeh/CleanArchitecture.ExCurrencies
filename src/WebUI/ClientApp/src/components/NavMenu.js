@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { LoginMenu } from './api-authorization/LoginMenu';
 import './NavMenu.css';
 
 export class NavMenu extends Component {
@@ -23,21 +24,17 @@ export class NavMenu extends Component {
 
   render() {
     return (
-      <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-          <NavbarBrand tag={Link} to="/">vehical_app</NavbarBrand>
+      <header className='header' >
+        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3  navbar navbar-dark bg-primary rounded border-white " data-bs-theme="dark"   container light>
+          <NavbarBrand tag={Link} to="/">Exchange System</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
             <ul className="navbar-nav flex-grow">
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
+                <NavLink tag={Link} className="text-light" to="/Cpanel">Cpanel</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-              </NavItem>
+              <LoginMenu>
+              </LoginMenu>
             </ul>
           </Collapse>
         </Navbar>

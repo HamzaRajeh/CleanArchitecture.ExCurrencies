@@ -85,9 +85,7 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
                 name: "FK_ExCurrenciesHistory_Users_UsersId",
                 table: "ExCurrenciesHistory");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Users_Currencies_BaseCurrencyID",
-                table: "Users");
+
 
             migrationBuilder.DropIndex(
                 name: "IX_Users_BaseCurrencyID",

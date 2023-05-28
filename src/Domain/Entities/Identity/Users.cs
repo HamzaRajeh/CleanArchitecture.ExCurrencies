@@ -9,10 +9,6 @@ using Microsoft.AspNetCore.Identity;
 namespace ExCurrency.Domain.Entities.Identity;
 public class Users: IdentityUser
 {
-    [ForeignKey("Currencies")]
-    public int? BaseCurrencyID { get; set; }
     public string? AccountDescription { get; set; }
-    public ICollection<ExCurrenciesDashboard> ExCurrenciesDashboard { get; } = new List<ExCurrenciesDashboard>();
-    public ICollection<ExCurrenciesHistory> ExCurrenciesHistory { get; } = new List<ExCurrenciesHistory>();
-    public virtual Currencies Currencies { get; set; }
-}
+    public string? POSTURL { get; set; }
+ }

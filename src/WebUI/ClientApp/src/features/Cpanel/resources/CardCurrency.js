@@ -1,4 +1,7 @@
 
+import authService from '../../../components/api-authorization/AuthorizeService'
+
+
 export const InputManageCurrency={
     BuySale:[
          {col:"Buy",type:"TextField",label:"Buy",defaultValue:"",value:null,class:"",helperText:"currensy's Buy ",ref:null,width:'40%',size:"small"}
@@ -7,11 +10,10 @@ export const InputManageCurrency={
 }
  
 
-export const SetUpdateDashboardHandle=(currenciesId)=>{
-    const SingInfo=JSON.parse(localStorage.getItem('SingInfo'));
-if (!SingInfo) {
-    return 0;
-}
+export  const  SetUpdateDashboardHandle =async  (currenciesId) => {
+    const token = await authService.getAccessToken();
+    const User = await authService.getUser();
+ console.log(User)
     let Buy;
     let Sale;
     InputManageCurrency.BuySale.map(a=>{
@@ -25,13 +27,13 @@ return 0;
 });
 
  var myHeaders = new Headers();
- myHeaders.append("Content-Type", "application/json");
- 
- var raw = JSON.stringify({
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization",`Bearer ${token}`)
+  var raw = JSON.stringify({
    "currenciesId": parseInt(currenciesId),
    "buyRate":parseInt(Buy),
    "saleRate":parseInt(Sale),
-   "applicationUserId": SingInfo.id
+   "applicationUserId":  User.id
  });
  
  var requestOptions = {
@@ -41,30 +43,24 @@ return 0;
    redirect: 'follow'
  };
  
- fetch("https://localhost:5001/api/SetUpdateDashboard", requestOptions)
-   .then(response => response.text())
+ fetch("api/SetUpdateDashboard", requestOptions)
+   .then(response => response.json())
    .then(result => {
     console.log(result)
     alert("Updated")
-    window.location.href="/"
-  })
+   })
    .catch(error =>console.log('error', error));
-    window.location.href = "/"
-    };
+     };
     
     export const RejectDashboardHandle=(currenciesId)=>{
-      const SingInfo=JSON.parse(localStorage.getItem('SingInfo'));
-  if (!SingInfo) {
-      return 0;
-  }
-
+ 
   
    var myHeaders = new Headers();
    myHeaders.append("Content-Type", "application/json");
    
    var raw = JSON.stringify({
      "currenciesId": parseInt(currenciesId),
-     "applicationUserId": SingInfo.id
+     "applicationUserId": ""
    });
    
    var requestOptions = {
@@ -74,7 +70,7 @@ return 0;
      redirect: 'follow'
    };
    
-   fetch("https://localhost:5001/api/RejectExDashboard", requestOptions)
+   fetch("api/RejectExDashboard", requestOptions)
      .then(response => response.text())
      .then(result => {
       console.log(result)

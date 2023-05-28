@@ -9,6 +9,7 @@ import { CardCurrencyEx } from '../features/components/Cards';
 export const   Home=()=>{
   
   const [Data,setData]=new useState([])
+  const [Result,setResult]=new useState([])
 
 
  
@@ -22,6 +23,7 @@ const FetchCurrenciesData=(PageNumber=1,PageSize=10)=>{
     .then(result => {
       
       setData([...Data,...result.items])
+      setResult([...Data,...result.items])
    
     })
     .catch(error => console.log('error', error));
@@ -36,12 +38,31 @@ useEffect( ()=>{
  // eslint-disable-next-line
 },[])
   return<>
-            <div style={{display:"flex",flexDirection:"column",maxHeight:750,overflow:"auto"}} >
+            <div style={{display:"flex",flexDirection:"column",maxHeight:"100%",overflow:"auto",justifySelf:'center',alignItems:'center'}} >
  
             <div><h1>  Exchange currencies</h1></div>
-            <div ><TextField type='text'   size='small'  label="Search" helperText={'Search About Any Data Of currencies '}   sx={{ m: 1,width: '65%'}} /></div>
+            <div ><TextField type='text'   size='small'  label="Search" helperText={'Search About Any Data Of currencies '} onChange={(e)=>{
+setResult([... Data.filter(currency => {
+  let query=e.currentTarget.value;
+  if (query=== "") {
+    //if query is empty
+    return currency;
+  } else if (currency.currencyName.toLowerCase().includes(query.toLowerCase())) {
+    //returns filtered array
+    return currency;
+  }
+  else if (currency.code.toLowerCase().includes(query.toLowerCase())) {
+    //returns filtered array
+    return currency;
+  }
+  else{
+    return null;
+  }
+})]);
 
-{Data.map((c,index)=>{
+            }}    sx={{ m: 1}} /></div>
+
+{Result.map((c,index)=>{
 return     <CardCurrencyEx  id={c.id} CurrncyName={c.currencyName} CurrncyCode={c.code}  />
 
 })}

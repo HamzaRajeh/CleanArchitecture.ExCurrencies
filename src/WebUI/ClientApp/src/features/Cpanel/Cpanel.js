@@ -16,17 +16,11 @@ const Item = styled(Paper)(({ theme }) => ({
 const [View,setView]=useState(<>
 <h2>Welcome to<br/>Cpanel Exchange System </h2>
 </>);
-const SingInfo=JSON.parse(localStorage.getItem('SingInfo'));
- 
-if(!SingInfo)
-{
-  window.location.href="/Login";
-}
-else{
+
 return<>
 <Box sx={{ flexGrow: 1 }}>
 <Grid  container   columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
-  <Grid item   xs={12} md={2.2} >
+  <Grid item   xs={12} md={3} >
     <Item>
   <Menu onPush={(e)=>{
      
@@ -42,7 +36,7 @@ setView(e)
  </Grid>
  </Box>
 </>
-}
+
 
 
 }

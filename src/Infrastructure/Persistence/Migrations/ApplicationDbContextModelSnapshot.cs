@@ -17,7 +17,7 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -238,14 +238,9 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
                     b.Property<decimal>("SaleRate")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UsersId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CurrenciesId");
-
-                    b.HasIndex("UsersId");
 
                     b.ToTable("ExCurrenciesDashboard");
                 });
@@ -280,13 +275,11 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UsersId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CurrencyId");
-
-                    b.HasIndex("UsersId");
 
                     b.ToTable("ExCurrenciesHistory");
                 });
@@ -301,9 +294,6 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("AccountDescription")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("BaseCurrencyID")
-                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -330,6 +320,9 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("POSTURL")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -350,8 +343,6 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BaseCurrencyID");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -580,15 +571,11 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("ExCurrency.Domain.Entities.ExCurrenciesDashboard", b =>
                 {
-                    b.HasOne("ExCurrency.Domain.Entities.Currencies", "Currencies")
+                    b.HasOne("ExCurrency.Domain.Entities.Currencies", "Currency")
                         .WithMany("ExCurrenciesDashboard")
                         .HasForeignKey("CurrenciesId");
 
-                    b.HasOne("ExCurrency.Domain.Entities.Identity.Users", null)
-                        .WithMany("ExCurrenciesDashboard")
-                        .HasForeignKey("UsersId");
-
-                    b.Navigation("Currencies");
+                    b.Navigation("Currency");
                 });
 
             modelBuilder.Entity("ExCurrency.Domain.Entities.ExCurrenciesHistory", b =>
@@ -597,20 +584,7 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
                         .WithMany("ExCurrenciesHistory")
                         .HasForeignKey("CurrencyId");
 
-                    b.HasOne("ExCurrency.Domain.Entities.Identity.Users", null)
-                        .WithMany("ExCurrenciesHistory")
-                        .HasForeignKey("UsersId");
-
                     b.Navigation("Currency");
-                });
-
-            modelBuilder.Entity("ExCurrency.Domain.Entities.Identity.Users", b =>
-                {
-                    b.HasOne("ExCurrency.Domain.Entities.Currencies", "Currencies")
-                        .WithMany("Users")
-                        .HasForeignKey("BaseCurrencyID");
-
-                    b.Navigation("Currencies");
                 });
 
             modelBuilder.Entity("ExCurrency.Domain.Entities.TodoItem", b =>
@@ -699,15 +673,6 @@ namespace ExCurrency.Infrastructure.Persistence.Migrations
                 });
 
             modelBuilder.Entity("ExCurrency.Domain.Entities.Currencies", b =>
-                {
-                    b.Navigation("ExCurrenciesDashboard");
-
-                    b.Navigation("ExCurrenciesHistory");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("ExCurrency.Domain.Entities.Identity.Users", b =>
                 {
                     b.Navigation("ExCurrenciesDashboard");
 

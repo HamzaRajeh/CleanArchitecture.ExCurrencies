@@ -35,7 +35,7 @@ public class IdentityService : IIdentityService
         var user = new Users
         {
             UserName = userName,
-            Email = userName,AccountDescription= AccountDescription,BaseCurrencyID= BaseCurrencyID
+            Email = userName,AccountDescription= AccountDescription
         };
 
         var result = await _userManager.CreateAsync(user, password);

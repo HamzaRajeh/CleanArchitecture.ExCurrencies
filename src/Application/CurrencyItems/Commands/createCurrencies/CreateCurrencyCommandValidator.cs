@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ExCurrency.Application.CurrencyItems.Commands.updateCurrencies;
-using FluentValidation;
+ using FluentValidation;
 
 namespace ExCurrency.Application.CurrencyItems.Commands.createCurrencies;
-public class UpdateCurrencyCommandValidator:AbstractValidator<UpdateCurrencyCommand>  
+public class UpdateCurrencyCommandValidator:AbstractValidator<CreateCurrencyCommand>  
 {
     public UpdateCurrencyCommandValidator()
     {

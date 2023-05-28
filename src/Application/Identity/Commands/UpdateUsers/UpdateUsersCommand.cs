@@ -16,7 +16,6 @@ public record UpdateUsersCommand : IRequest<Users>
     public string? Id { get; set; }
     public string? AccountDescription { get; set; }
     public string? UserName { get; set; }
-    public int? BaseCurrencyID { get; set; }
     public string? Email { get; set; }
     public string? PhoneNumber { get; set; }
 
@@ -42,7 +41,6 @@ public class UpdateUsersCommandHandler : IRequestHandler<UpdateUsersCommand, Use
         UpdateUser.Email = request.Email;  
         UpdateUser.PhoneNumber = request.PhoneNumber;   
         UpdateUser.UserName = request.UserName; 
-        UpdateUser.BaseCurrencyID = request.BaseCurrencyID;
 
         var result= await _UserManger.UpdateAsync(UpdateUser);   
        

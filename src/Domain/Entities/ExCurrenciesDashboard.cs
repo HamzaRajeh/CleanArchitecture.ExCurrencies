@@ -15,8 +15,6 @@ public class ExCurrenciesDashboard : BaseAuditableEntity
     public int? CurrenciesId { get; set; }
     public decimal BuyRate { get; set; } = 0;
     public decimal SaleRate { get; set; }=0;
-    [ForeignKey("Users")]
-    public  string? ApplicationUserId { get;set; }
-    public List<Currencies>? Currencies { get; set; }
-    public virtual Users Users { get; set; }
-}
+     public  string? ApplicationUserId { get;set; }
+    public virtual Currencies? Currency { get; set; }
+ }

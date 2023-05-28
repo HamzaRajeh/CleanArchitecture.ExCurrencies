@@ -1,21 +1,22 @@
-
-import { Home } from "./components/Home";
-import { Reqister } from "./features/Cpanel/components/Register";
-import { SignInOfAdmin as Login } from "./features/Cpanel/components/SignIn";
+import ApiAuthorzationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
+import { FetchData } from './components/FetchData';
+  import { Home } from "./components/Home";
+ import {Cpanel} from './features/Cpanel/Cpanel'
 
 const AppRoutes = [
   {
     index: true,
     element: <Home />
+  } ,  {
+    path: '/fetch-data',
+    requireAuth: true,
+     element: <FetchData/>
   },
   {
-    path: '/Register',
-    element: <Reqister />
+    path: '/Cpanel',
+    requireAuth: true,
+     element: <Cpanel/>
   },
-  {
-    path: '/Login',
-    element: <Login />
-  }
+  ...ApiAuthorzationRoutes
 ];
-
 export default AppRoutes;
