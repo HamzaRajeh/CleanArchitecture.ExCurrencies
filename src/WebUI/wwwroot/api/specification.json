@@ -738,7 +738,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/DeleteCurrencies/{id}": {
